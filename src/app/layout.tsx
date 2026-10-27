@@ -27,7 +27,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className=" max-w-7xl mx-auto p-10">
         <NavbarPage></NavbarPage>
         
-        {children}
+        <div className="mt-10">
+           {children}
+       </div>
       
       
       </body>

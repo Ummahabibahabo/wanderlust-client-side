@@ -48,6 +48,12 @@ export const NavbarPage = () => {
           </Link>
 
           <Link
+            className={pathname === "/add-destinations" ? "text-[#15A1BF] underline underline-offset-8" : "hover:text-[#15A1BF]"}
+            href="/add-destinations"
+          >
+           Add Destinations
+          </Link>
+          <Link
             className={pathname === "/my-bookings" ? "text-[#15A1BF] underline underline-offset-8" : "hover:text-[#15A1BF]"}
             href="/my-bookings"
           >
@@ -133,7 +139,12 @@ export const NavbarPage = () => {
           >
             Destinations
           </Link>
-
+<Link
+            className={pathname === "/add-destinations" ? "text-[#15A1BF] underline underline-offset-8" : "hover:text-[#15A1BF]"}
+            href="/add-destinations"
+          >
+           Add Destinations
+          </Link>
           <Link
             onClick={() => setMenuOpen(false)}
             className={`rounded-lg px-3 py-2 hover:bg-gray-100 ${
