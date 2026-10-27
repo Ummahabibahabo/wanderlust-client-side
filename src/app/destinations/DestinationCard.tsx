@@ -26,12 +26,13 @@ export default function DestinationCardPage({
           {/* Destination Image */}
           <div className="relative h-56 w-full overflow-hidden">
             <Image
-              src={item.user.imageUrl}
-              alt={item.user.destinationName}
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover transition duration-500 group-hover:scale-110"
-            />
+  src={item.user.imageUrl}
+  alt={item.user.destinationName}
+  fill
+  unoptimized
+  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+  className="object-cover transition duration-500 group-hover:scale-110"
+/>
 
             <span className="absolute left-3 top-3 flex items-center gap-1 rounded-full bg-white px-3 py-1 text-sm font-medium capitalize text-green-700 shadow">
               <MdCategory size={17} />
@@ -75,12 +76,14 @@ export default function DestinationCardPage({
               </div>
             </div>
 
-                <div className="flex">
+            <Link href={`destinations/${item._id}`}>
+                           <div className="flex">
   <button className="group flex items-center justify-center gap-2 rounded-lg bg-green-600 px-6 py-3 font-semibold text-white shadow-md transition-all duration-300 hover:bg-green-700 hover:shadow-lg active:scale-95">
     Book Now
     <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
   </button>
 </div>
+            </Link>
             
           </div>
         </div>
