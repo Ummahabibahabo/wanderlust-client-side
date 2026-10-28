@@ -1,5 +1,5 @@
-
 import { DestinationDataType } from "@/component/typs";
+import EditDestinationDialog from "@/components/ui/EditDestinationDialog";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -10,6 +10,8 @@ import {
   FaMapMarkerAlt,
   FaMoneyBillWave,
   FaLeaf,
+  FaEdit,
+  FaTrashAlt,
 } from "react-icons/fa";
 
 interface DestinationDetailsPageProps {
@@ -27,12 +29,12 @@ export default async function DestinationDetailsPage({
   );
 
   const destinationData: DestinationDataType = await res.json();
+  console.log("Destination data",destinationData)
   const destination = destinationData.user;
 
   return (
     <main className="min-h-screen bg-[#F8FAFC] px-4 py-10 md:px-8">
       <div className="mx-auto max-w-7xl">
-
         {/* Breadcrumb */}
         <div className="mb-6 text-sm text-gray-500">
           <Link href="/" className="hover:text-[#15A1BF]">
@@ -46,7 +48,6 @@ export default async function DestinationDetailsPage({
 
         {/* Main Destination */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-
           {/* Destination Image */}
           <div className="relative min-h-[300px] overflow-hidden rounded-3xl shadow-lg md:min-h-[480px]">
             <Image
@@ -106,10 +107,27 @@ export default async function DestinationDetailsPage({
               {destination.description}
             </p>
 
-            {/* Book Now Button - No Link */}
+            {/* Edit and Delete Buttons */}
+            <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+              
+              <EditDestinationDialog destinationData={destinationData}
+              
+                destination={destination}></EditDestinationDialog>
+
+              {/* Delete Button */}
+              <button
+                type="button"
+                className="group flex items-center justify-center gap-2 rounded-xl border border-red-200 bg-red-50 px-5 py-3.5 font-semibold text-red-600 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-red-600 hover:bg-red-600 hover:text-white hover:shadow-lg"
+              >
+                <FaTrashAlt className="text-base transition-transform duration-300 group-hover:scale-110" />
+                Delete
+              </button>
+            </div>
+
+            {/* Book Now Button */}
             <button
               type="button"
-              className="mt-8 flex w-full items-center justify-center gap-3 rounded-xl bg-[#15A1BF] px-6 py-4 font-bold text-white shadow-md transition hover:bg-[#1189A3]"
+              className="mt-4 flex w-full items-center justify-center gap-3 rounded-xl bg-[#15A1BF] px-6 py-4 font-bold text-white shadow-md transition hover:bg-[#1189A3]"
             >
               <FaCalendarAlt />
               Book Now
@@ -124,7 +142,6 @@ export default async function DestinationDetailsPage({
 
         {/* About and Quick Info */}
         <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-3">
-
           {/* About Section */}
           <section className="rounded-3xl bg-white p-6 shadow-sm md:p-8 lg:col-span-2">
             <h2 className="text-2xl font-bold text-gray-900">
@@ -139,9 +156,7 @@ export default async function DestinationDetailsPage({
             <div className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-3">
               <div className="rounded-2xl bg-[#F0F5F0] p-5 text-center">
                 <FaGlobe className="mx-auto text-2xl text-[#05893E]" />
-                <p className="mt-3 font-semibold text-gray-800">
-                  Explore
-                </p>
+                <p className="mt-3 font-semibold text-gray-800">Explore</p>
                 <p className="mt-1 text-sm text-gray-500">
                   Beautiful places
                 </p>
@@ -149,22 +164,14 @@ export default async function DestinationDetailsPage({
 
               <div className="rounded-2xl bg-[#F0F5F0] p-5 text-center">
                 <FaMapMarkerAlt className="mx-auto text-2xl text-[#05893E]" />
-                <p className="mt-3 font-semibold text-gray-800">
-                  Discover
-                </p>
-                <p className="mt-1 text-sm text-gray-500">
-                  Local culture
-                </p>
+                <p className="mt-3 font-semibold text-gray-800">Discover</p>
+                <p className="mt-1 text-sm text-gray-500">Local culture</p>
               </div>
 
               <div className="rounded-2xl bg-[#F0F5F0] p-5 text-center">
                 <FaCalendarAlt className="mx-auto text-2xl text-[#05893E]" />
-                <p className="mt-3 font-semibold text-gray-800">
-                  Plan
-                </p>
-                <p className="mt-1 text-sm text-gray-500">
-                  Your next trip
-                </p>
+                <p className="mt-3 font-semibold text-gray-800">Plan</p>
+                <p className="mt-1 text-sm text-gray-500">Your next trip</p>
               </div>
             </div>
 
@@ -197,9 +204,7 @@ export default async function DestinationDetailsPage({
 
           {/* Quick Info */}
           <aside className="rounded-3xl bg-white p-6 shadow-sm md:p-8">
-            <h2 className="text-2xl font-bold text-gray-900">
-              Quick Info
-            </h2>
+            <h2 className="text-2xl font-bold text-gray-900">Quick Info</h2>
 
             <div className="mt-6 space-y-5">
               <div className="flex items-center justify-between gap-3">
@@ -263,7 +268,6 @@ export default async function DestinationDetailsPage({
                 Discover new places and create unforgettable memories.
               </p>
 
-              {/* Book Now Button - No Link */}
               <button
                 type="button"
                 className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-[#05893E] px-4 py-3 font-semibold text-white transition hover:bg-green-700"
