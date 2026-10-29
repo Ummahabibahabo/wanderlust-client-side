@@ -2,20 +2,25 @@
 
 "use client";
 
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { IoClose, IoMenuSharp } from "react-icons/io5";
+import NavbarClientPage from "./NavbarClient";
 
 export const NavbarPage = () => {
-  const pathname = usePathname();
+const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleMenuButton = () => {
     setMenuOpen(!menuOpen);
   };
-
+  const handleNavigate = () => {
+    setMenuOpen(false);
+  }
+  
   return (
     <nav className="w-full bg-white px-4 py-4 shadow-ldg md:px-8">
       <div className="flex items-center justify-between gap-4 font-medium text-[#0C0B0B]">
@@ -74,35 +79,7 @@ export const NavbarPage = () => {
         </Link>
 
         {/* Desktop Profile and Auth */}
-        <div className="hidden items-center gap-5 md:flex lg:gap-8">
-          <Link
-            className={`flex items-center gap-2 ${
-              pathname === "/profile"
-                ? "text-[#15A1BF] underline underline-offset-8"
-                : "hover:text-[#15A1BF]"
-            }`}
-            href="/profile"
-          >
-            <FaUser />
-            <span>Profile</span>
-          </Link>
-
-          <Link
-            className={pathname === "/login" ? "text-[#15A1BF] underline underline-offset-8" : "hover:text-[#15A1BF]"}
-            href="/login"
-          >
-            Login
-          </Link>
-
-          <Link
-            className={
-              pathname === "/signUp" ? "text-[#15A1BF] underline underline-offset-8" : ""
-            }
-            href="/signUp"
-          >
-            Sign Up
-          </Link>
-        </div>
+        <NavbarClientPage></NavbarClientPage>
 
         {/* Mobile Profile Icon */}
         <Link
@@ -121,7 +98,7 @@ export const NavbarPage = () => {
         <div className="mt-4 flex flex-col gap-2 border-t border-gray-200 shadow-lg pt-4 md:hidden p-5">
 
           <Link
-            onClick={() => setMenuOpen(false)}
+            onClick={handleNavigate}
             className={`rounded-lg px-3 py-2 hover:bg-gray-100 ${
               pathname === "/" ? "bg-[#EAF8FB] text-[#15A1BF]" : ""
             }`}
@@ -131,7 +108,7 @@ export const NavbarPage = () => {
           </Link>
 
           <Link
-            onClick={() => setMenuOpen(false)}
+            onClick={handleNavigate}
             className={`rounded-lg px-3 py-2 hover:bg-gray-100 ${
               pathname === "/destinations" ? "bg-[#EAF8FB] text-[#15A1BF]" : ""
             }`}
@@ -146,7 +123,7 @@ export const NavbarPage = () => {
            Add Destinations
           </Link>
           <Link
-            onClick={() => setMenuOpen(false)}
+            onClick={handleNavigate}
             className={`rounded-lg px-3 py-2 hover:bg-gray-100 ${
               pathname === "/my-bookings" ? "bg-[#EAF8FB] text-[#15A1BF]" : ""
             }`}
@@ -156,7 +133,7 @@ export const NavbarPage = () => {
           </Link>
 
           <Link
-            onClick={() => setMenuOpen(false)}
+            onClick={handleNavigate}
             className={`rounded-lg px-3 py-2 hover:bg-gray-100 ${
               pathname === "/admin" ? "bg-[#EAF8FB] text-[#15A1BF]" : ""
             }`}
@@ -165,36 +142,12 @@ export const NavbarPage = () => {
             Admin
           </Link>
 
-          <Link
-            onClick={() => setMenuOpen(false)}
-            className={`flex items-center gap-2 rounded-lg px-3 py-2 hover:bg-gray-100 ${
-              pathname === "/profile" ? "bg-[#EAF8FB] text-[#15A1BF]" : ""
-            }`}
-            href="/profile"
-          >
-            <FaUser />
-            Profile
-          </Link>
-
-          <Link
-            onClick={() => setMenuOpen(false)}
-            className={`rounded-lg px-3 py-2 hover:bg-gray-100 ${
-              pathname === "/login" ? "bg-[#EAF8FB] text-[#15A1BF]" : ""
-            }`}
-            href="/login"
-          >
-            Login
-          </Link>
-
-          <Link
-            onClick={() => setMenuOpen(false)}
-            className={`rounded-lg px-3 py-2 hover:bg-gray-100 ${
-              pathname === "/signUp" ? "bg-[#EAF8FB] text-[#15A1BF]" : ""
-            }`}
-            href="/signUp"
-          >
-            Sign Up
-          </Link>
+        <div className="border-t border-gray-200 pt-4">
+  <NavbarClientPage
+    mobile={true}
+    onNavigate={handleNavigate}
+  />
+</div>
         </div>
       )}
     </nav>

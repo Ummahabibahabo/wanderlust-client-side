@@ -1,4 +1,5 @@
 import { DestinationDataType } from "@/component/typs";
+import DeleteDestinationDialogPage from "@/components/DeleteDestinationDialog";
 import EditDestinationDialog from "@/components/ui/EditDestinationDialog";
 import Image from "next/image";
 import Link from "next/link";
@@ -114,14 +115,9 @@ export default async function DestinationDetailsPage({
               
                 destination={destination}></EditDestinationDialog>
 
-              {/* Delete Button */}
-              <button
-                type="button"
-                className="group flex items-center justify-center gap-2 rounded-xl border border-red-200 bg-red-50 px-5 py-3.5 font-semibold text-red-600 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-red-600 hover:bg-red-600 hover:text-white hover:shadow-lg"
-              >
-                <FaTrashAlt className="text-base transition-transform duration-300 group-hover:scale-110" />
-                Delete
-              </button>
+              <DeleteDestinationDialogPage destinationData={destinationData}
+              
+                destination={destination}></DeleteDestinationDialogPage>
             </div>
 
             {/* Book Now Button */}
